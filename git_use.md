@@ -24,3 +24,5 @@ git clone ：拉取远程仓库到本地，可以选择https或者ssh，能ping�
 在github上点击setting，可以看到ssh and GPG keys，复制过去就可以
 
 git pull ：拉取远程仓库
+
+和github远程仓库同步要保证网络可达
