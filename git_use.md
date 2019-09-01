@@ -26,3 +26,11 @@ git clone ：拉取远程仓库到本地，可以选择https或者ssh，能ping�
 git pull ：拉取远程仓库
 
 和github远程仓库同步要保证网络可达
+
+添加gitee配置
+
+vim .git/config
+
+按照origin设置second为gitee
+
+ssh可以免密，不用每次都输入密码和账户
