@@ -33,4 +33,19 @@ vim .git/config
 
 按照origin设置second为gitee
 
+将配置文件中的origin及其下面两行复制，github那行的地址改为gitee的地址
+含有origin的两行，将origin替换为second
+
 ssh可以免密，不用每次都输入密码和账户
+
+git pull origin master ：拉取原始仓库数据（github）
+
+git pull second master ：拉取第二仓库数据（gitee）
+
+同理
+
+git push origin master ：推送到原始仓库(github)
+
+git push second master ：推送到第二仓库(gitee)
+
+真的是非常方便啊
