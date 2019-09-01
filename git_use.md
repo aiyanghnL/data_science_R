@@ -22,3 +22,5 @@ git clone ：拉取远程仓库到本地，可以选择https或者ssh，能ping�
 通过ssh命令产生公钥和私钥(参考ssh免密登录)，将公钥复制到github，
 
 在github上点击setting，可以看到ssh and GPG keys，复制过去就可以
+
+git pull ：拉取远程仓库
