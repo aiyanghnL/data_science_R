@@ -45,7 +45,7 @@ ggplot(data = mpg) +
 
 
 
-![png](image/output_6_1.png)
+![png](output_6_1.png)
 
 
 
@@ -58,7 +58,7 @@ p + geom_point()
 
 
 
-![png](image/output_7_1.png)
+![png](output_7_1.png)
 
 
 
@@ -69,7 +69,7 @@ p + geom_point(color = "blue")
 
 
 
-![png](image/output_8_1.png)
+![png](output_8_1.png)
 
 
 
@@ -80,7 +80,7 @@ p + geom_point(size = 4)
 
 
 
-![png](image/output_9_1.png)
+![png](output_9_1.png)
 
 
 ### R自带形状有25种，分别从0-24,0-14用color指定形状的颜色，15-20用color指定填充颜色，21-24用color指定颜色，fill指定填充
@@ -93,7 +93,7 @@ p + geom_point(shape = 4)
 
 
 
-![png](image/output_11_1.png)
+![png](output_11_1.png)
 
 
 
@@ -106,7 +106,7 @@ f + geom_point(mapping = aes(x = displ, y = hwy))
 
 
 
-![png](image/output_12_1.png)
+![png](output_12_1.png)
 
 
 
@@ -118,7 +118,7 @@ f + geom_point(mapping = aes(x = displ, y = hwy, color = class))
 
 
 
-![png](image/output_13_1.png)
+![png](output_13_1.png)
 
 
 
@@ -130,7 +130,7 @@ f + geom_point(mapping = aes(x = displ, y = hwy, color = displ, size = displ))
 
 
 
-![png](image/output_14_1.png)
+![png](output_14_1.png)
 
 
 ## 注意
