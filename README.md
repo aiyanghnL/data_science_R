@@ -1,9 +1,9 @@
 # data_science_R
 This repository is about  R language.
 
-This is a repository that I learn data science language , such as R , Python and julia.
+This is a repository that I learn data science language .
 
-这是我学习数据科学语言，比如R、Python和Julia的仓库。
+这是我学习数据科学语言的仓库之一。
 
 In the repository , it mains about R.
 
