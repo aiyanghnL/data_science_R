@@ -48,6 +48,8 @@ write.csv(diamonds, "diamonds.csv")
 
 使用Rstudio创建了一个RDataScience_test项目，使用Rstudio的话就会方文件到那里
 
+Rstudio里面的git集成还是很好用的，不过命令行更好用
+
 结束
 
 
