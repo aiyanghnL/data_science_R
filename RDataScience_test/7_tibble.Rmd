@@ -1,0 +1,237 @@
+---
+title: "7_tibble"
+author: "ley"
+date: "2019年10月20日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# 使用tibble实现简单数据框
+
+这一部分作者也写的很简洁，无外乎建议我们使用tibble数据框来替代data.frame数据框，还有就是简单的创建和使用tibble数据框
+
+由于jupyter对tibble数据框不支持，这里尽管会写，但是看不出来一些差异，所以还会在RDataScience_test目录里用Rmd写一份
+
+
+```{R}
+# 加载tidyverse包
+library(tidyverse)
+```
+
+
+## 创建tibble
+
+
+```{R}
+
+### 从data.frame创建tibble
+iris  # 看data.frame
+as_tibble(iris) 
+```
+
+
+
+
+```{R}
+##  通过tibble()函数使用vector创建tibble
+tibble(
+    x = 1:10,
+    y = 1,
+    z= x^2 + y)
+```
+
+
+tibble尽管是新的，但相比data.frame功能要少，不过接受R中无效的变量名称，用反引号引起来即可,使用这些变量的时候也要使用反引号
+
+
+```{R}
+tb <- tibble(
+    `)` = "smile",
+    ` ` = "space",
+    `2000` = "number")
+tb
+```
+
+
+
+
+
+```{R}
+# 也可以使用tribble()函数创建tibble，列标题由公式(~开头)定义，数据条目以逗号分隔
+tribble(
+    ~x,~y,~z,
+    #--|--|--# 是注释
+    "a", 2, 3.6,
+    "b", 1, 8.4
+)
+```
+
+
+
+
+
+## 对比 tibble与data.frame
+
+### 打印的差异
+
+tibble默认只显示前10行，而且列是适合屏幕的，还打印数据类型，jupyter不支持，看不出来；data.frame的打印就省略了
+
+
+```{R}
+tibble(
+    a = lubridate::now() + runif(1e3)*86400,
+    b = lubridate::today() + runif(1e3)*30,
+    c = 1:1e3,
+    d = runif(1e3),
+    e = sample(letters, 1e3, replace = T)
+)
+```
+
+
+
+
+
+```{R}
+# 更改默认显示输出
+# 使用print()函数，n：行数，width：显示宽度
+nycflights13::flights %>%
+print(n = 10, width = Inf)
+```
+
+
+
+还可以通过设置以下选项来控制默认的打印方式。
+
+• options(tibble.print_max = n, tibble.pring_min = m)：如果多于m行，则只打印出n行。options(tibble.print_min = Inf)表示总是打印所有行。
+
+• options(tibble.width = Inf)表示总是打印所有列，不考虑屏幕的宽度。
+
+### 取子集
+
+取子集的方法无非是用"$"和[[]]
+
+
+
+```{R}
+df <- tibble(
+    x = runif(5),
+    y = rnorm(5)
+)
+
+df$x
+df[["x"]]
+df[,"x"]
+df[,1]
+```
+
+
+
+```{R}
+# 要想在管道中使用这些提取操作，使用特殊占位符"."
+df %>% .$x
+df %>% .[["x"]]
+```
+
+
+
+
+
+与data.frame相比，tibble更严格：它不能进行部分匹配，如果想要访问的列不存在，它会生成一条警告信息。
+
+### 与旧代码进行交互
+
+有些函数不支持tibble，可以使用as.data.frame()函数转换
+
+## 练习
+
+# (1) 如何识别一个对象是否为tibble？
+
+
+# 直接打印出来即可，显示上很容易区别
+
+
+
+```{R}
+# (2) 对比在data.frame和等价的tibble上进行的以下操作。有何区别？
+# 为什么默认的数据框操作会让人感到沮丧
+
+# df <-data.frame(abc =1, xyz ="a") 
+# df$x 
+# df[, "xyz"] 
+# df[, c("abc", "xyz")]
+```
+
+
+```{R}
+df <-data.frame(abc =1, xyz ="a") 
+df$x 
+df[, "xyz"] 
+df[, c("abc", "xyz")]
+```
+
+
+```{R}
+df <-tibble(abc =1, xyz ="a") 
+df$x # tibble更加严格，不能模糊匹配
+df[, "xyz"] 
+df[, c("abc", "xyz")]
+```
+
+
+
+
+
+```{R}
+## (3) 如果将一个变量的名称保存在一个对象中，
+# 如var  <-  "mpg"，如何从tibble中提取出这个变量？
+
+# 用上面的例子
+var <- "xyz"
+# df%var # 这样不可以
+df[,var]
+df[[var]]
+# df$`var` # 这样也不可以
+```
+
+
+
+
+
+```{R}
+## (4) 在以下的数据框中练习如何引用不符合语法规则的变量名。
+## a. 提取名称为1的变量。
+## b. 绘制表示变量1和变量2关系的散点图。
+## c. 创建一个名称为3的新列，其值为列2除以列1。
+## d. 将这些列重新命名为one、two和three。
+annoying <-tibble(   
+    `1` =1:10,   
+    `2` = `1` *2+rnorm(length(`1`)) 
+)
+```
+
+
+```{R}
+# a
+annoying$`1`
+# b
+ggplot(annoying) + geom_point(aes(x = `1`, y = `2`))
+# c
+(annoying <- mutate(annoying, `3` = `2`/`1`))
+# d
+colnames(annoying) = c("one","two","three")
+annoying
+```
+
+
+
+
+
+结束
+
+
+
+
