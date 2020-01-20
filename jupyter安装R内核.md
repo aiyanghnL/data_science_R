@@ -30,3 +30,30 @@ IRkernel::installspec()
 如果发现不能安装则直接安装二进制版：install.packages("IRkernel")
 
 
+## 使用rpy2包在R-py之间切换：
+
+先安装rpy2: pip install rpy2
+
+导入rpy2, 新版 ryp2 已改成: %load_ext rpy2.ipython
+
+将整个cell设为R代码：%%R
+
+%%R
+
+A <- matrix(1, 15, 15) A[4,7] <- 0 persp(A, expand=0.5)
+
+将一行设为R代码： %R
+
+%R print("Hi from R")
+
+从R获取变量var：%R -o var
+
+从Python获取变量var: %R -i var
+
+references:
+
+[1](http://news.hiapk.com/internet/s593427f2c668.html)
+
+[2](http://nbviewer.jupyter.org/github/yenlung/Computing-Life-with-Computers/blob/master/Topic_R%20in%20IPython.ipynb#)
+
+这样比仅仅在notebook使用一种语言有优势
